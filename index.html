@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>21ER Coin</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080808;color:#f5e5b0;font-family:Arial,sans-serif;padding:20px 16px 90px}
+header{text-align:center;padding:20px}
+.logo{font-size:45px;font-weight:900;color:#ffd36b;text-shadow:0 0 20px #9d6c16}
+small{color:#a99770}
+.card{background:linear-gradient(145deg,#211b0d,#101010);border:1px solid #76581d;border-radius:18px;padding:22px;margin:16px 0}
+.balance{font-size:44px;color:#ffd36b;font-weight:bold;margin:12px 0}
+h3{color:#eac36c}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+button{background:linear-gradient(135deg,#ffe08a,#ae7b21);border:0;border-radius:12px;padding:17px 8px;font-size:14px;font-weight:bold;color:#181100;cursor:pointer}
+nav{position:fixed;bottom:0;left:0;width:100%;background:#17130c;border-top:1px solid #6c501b;display:flex;justify-content:space-around;padding:17px 4px}
+nav span{font-size:12px;color:#e8c46c;cursor:pointer}
+#message{color:#ffe08a;min-height:22px}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">👑 21ER</div>
+<small>COIN REWARDS • PREMIUM</small>
+</header>
+<div class="card">
+<small>DEIN GESAMTSALDO</small>
+<div class="balance"><span id="balance">0</span> 🪙</div>
+<small>21ER Punkte</small>
+</div>
+<h3>Dein Dashboard</h3>
+<div class="grid">
+<button onclick="demo('Tagesbelohnung')">🎁 Tagesbonus</button>
+<button onclick="demo('Coin Bonus')">✨ Coin Bonus</button>
+<button onclick="invite()">👥 Freunde einladen</button>
+<button onclick="demo('Rangliste')">🏆 Rangliste</button>
+<button onclick="demo('Wallet')">💰 Wallet</button>
+<button onclick="demo('Auszahlung')">💸 Auszahlung</button>
+</div>
+<div class="card">
+<h3>⭐ VIP Status</h3>
+<p>Bronze Mitglied</p>
+<small>Sammle Punkte und steige auf!</small>
+</div>
+<p id="message"></p>
+<nav>
+<span onclick="demo('Start')">⌂ Start</span>
+<span onclick="demo('Freunde')">👥 Freunde</span>
+<span onclick="demo('Wallet')">💰 Wallet</span>
+<span onclick="demo('Profil')">👤 Profil</span>
+</nav>
+<script>
+const tg=window.Telegram?.WebApp;
+tg?.ready();
+tg?.expand();
+function demo(name){
+document.getElementById('message').textContent=name+' – Funktion wird noch verbunden.';
+}
+function invite(){
+const username='Coin21erBot';
+const id=tg?.initDataUnsafe?.user?.id;
+if(!id){demo('Einladung');return}
+const url='https://t.me/'+username+'?start=ref_'+id;
+tg?.openTelegramLink('https://t.me/share/url?url='+encodeURIComponent(url));
+}
+</script>
+</body>
+</html>
